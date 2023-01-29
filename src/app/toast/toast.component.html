@@ -1,0 +1,7 @@
+<ng-container *ngFor="let toast of toastService.toasts.reverse()">
+  <div class="container" (click)="toastService.hideToast(toast.id)">
+    <h3 class="container__title">{{toast.title}}</h3>
+    <p>{{ toast.description }}</p>
+    <p>{{toast.id}}</p>
+  </div>
+</ng-container>
