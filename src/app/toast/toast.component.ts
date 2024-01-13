@@ -4,14 +4,17 @@ import { ToastService } from '../services/toast.service';
 @Component({
   selector: 'app-toast',
   templateUrl: './toast.component.html',
-  styleUrls: ['./toast.component.scss']
+  styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent implements OnInit {
 
-
-  constructor(public toastService: ToastService) { }
+  constructor(private _toastService: ToastService) { }
 
   ngOnInit(): void {
+  }
+
+  hideToast(id: number) {
+    this._toastService.hideToast(id);
   }
 
 }
