@@ -1,20 +1,59 @@
+
 :host {
+  display: block;
   position: absolute;
   right: 0;
-  max-width: 50%;
   top: 0;
 }
-
-.container {
-  border: 1px solid;
+.toast-container {
   border-color: #ccc #ccc #999;
   border-radius: 6px;
   background: #fafafa;
-  padding: 10px;
+  color: #ffffff;
+  display: flex;
+  margin: 1rem;
   min-width: 300px;
-  height: 7rem;
-
+  padding: 0 1rem;
+  
   &__title {
-    text-align: center;
+    line-height: 1;
   }
+  &__info {
+    flex: 1 1 auto
+  }
+  p {
+    line-height: 1;
+  }
+}
+
+.danger {
+    background-color: #dc3545;
+    border: solid #971d27f7;
+    border-width: 0 0 0 5px;
+}
+.success {
+  background-color: #28a745;
+  border: solid #2ab74b;
+  border-width: 0 0 0 5px;
+}
+
+.info {
+  background-color: #17a2b8;
+  border: solid #16b7d0;
+  border-width: 0 0 0 5px;
+}
+
+button {
+  background: transparent;
+  border:none;
+  color: white;
+  cursor: pointer;
+  :hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  svg {
+    border-radius: 50%;
+    padding: 5px;
+  }
+  
 }
