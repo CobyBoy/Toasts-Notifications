@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IToast } from '../toast.interface';
 import { ToastService } from '../services/toast.service';
 
 @Component({
@@ -7,10 +8,14 @@ import { ToastService } from '../services/toast.service';
   styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent implements OnInit {
+  toasts: IToast[] = [];
 
   constructor(private _toastService: ToastService) { }
 
   ngOnInit(): void {
+    this._toastService.getToasts().subscribe((toasts) => {
+      this.toasts = toasts;
+    })
   }
 
   hideToast(id: number) {
