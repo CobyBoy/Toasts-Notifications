@@ -7,16 +7,3 @@ body{
   height: 100%;
   min-height: 100vh;
 }
-
-button {
-  border: none;
-  border-radius: 4px;
-  background-color: rgb(76, 0, 255);
-  color: white;
-  font-weight: 700;
-  padding: 1rem;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.85;
-  }
-}
