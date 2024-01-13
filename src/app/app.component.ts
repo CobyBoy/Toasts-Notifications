@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { ToastComponent } from './toast/toast.component';
 import { ToastType } from './toast-type';
 import { ToastService } from './services/toast.service';
 
@@ -9,17 +8,34 @@ import { ToastService } from './services/toast.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild(ToastComponent) toastComponent!: ToastComponent;
 
   constructor(private toastService: ToastService) {}
 
   ngOnInit(): void {}
 
-  openToast() {
+  openSuccessToast() {
     this.toastService.setAndShowToast({
-      title: 'un titlo nuevo',
-      description: 'una descripbion',
+      title: 'Success title',
+      description: 'Success description',
+      type: ToastType.SUCCESS,
+      isVisible: true,
+      id: 1,
+    },2500);
+  }
+  openInfoToast() {
+    this.toastService.setAndShowToast({
+      title: 'Info title',
+      description: 'info descripcion',
       type: ToastType.INFO,
+      isVisible: true,
+      id: 1,
+    }, 1500);
+  }
+  openErrorToast() {
+    this.toastService.setAndShowToast({
+      title: 'error title',
+      description: 'error descripcion',
+      type: ToastType.DANGER,
       isVisible: true,
       id: 1,
     });
