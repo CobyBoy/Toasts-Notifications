@@ -11,24 +11,29 @@ export class ToastService {
   private toastSubject$: BehaviorSubject<IToast[]> = new BehaviorSubject(
     this.initialData
   );
+  private timer!: NodeJS.Timeout | null
 
   constructor() {}
 
-  get toasts() {
-    return this.toastSubject$.getValue();
+  getToasts() {
+    return this.toastSubject$.asObservable();
   }
 
-  hideToast(id?: number) {
-    let actual = this.toasts;
-    actual = this.toasts.filter((t) => t.id != id);
+  hideToast(id: number) {
+    let actual = this.toastSubject$.value;
+    actual = actual.filter((t) => t.id != id);
     this.toastSubject$.next(actual);
   }
 
-  setAndShowToast(data: IToast, time = 100000) {
+  setAndShowToast(data: IToast, time = 500000) {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    
     const { title = '', description = '', type = ToastType.DANGER } = data;
     const id = Math.floor(Math.random() * (1000 - 1) + 1);
     this.toastSubject$.next([
-      ...this.toasts,
+      ...this.toastSubject$.value,
       {
         id,
         title: `${title}`,
@@ -38,9 +43,12 @@ export class ToastService {
       },
     ]);
 
-    setTimeout(() => {
-      const finalToast = this.toasts.filter((t) => t.id != id);
+    this.timer = setTimeout(() => {
+      const finalToast = this.toastSubject$.value.filter((t) => t.id != id);
       this.toastSubject$.next(finalToast);
     }, time);
+
+    this.timer = null;
+   
   }
 }
